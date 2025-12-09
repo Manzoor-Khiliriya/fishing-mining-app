@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { marineProducts, marineBrands } from '@/app/lib/products';
 import ProductCard from '@/app/components/ProductCard';
 import { ArrowRight, Truck, ShieldCheck, LifeBuoy } from 'lucide-react';
+import NewsletterSection from '@/app/components/NewsLetterSection';
 
 // Animation Variants
 const containerVariants = {
@@ -181,35 +182,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6 — NEWSLETTER (bg-white) */}
-      <section className="py-24 bg-gray-50">
-        <motion.section
-          className="max-w-7xl mx-auto bg-marine-blue text-white py-20 text-center shadow-2xl"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, type: 'spring' }}
-        >
-          <h2 className="text-4xl font-bold mb-3">Join SEA CAST FISH Insider Club</h2>
-          <p className="text-gray-300 mb-10 text-lg">
-            Get instant access to product launches, exclusive deals, & field expert guides — zero spam.
-          </p>
-          <form className="max-w-3xl mx-auto flex flex-col sm:flex-row gap-4">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              required
-              className="flex-1 px-6 py-2 bg-white rounded-full text-black placeholder-gray-500 focus:ring-4 focus:ring-accent-yellow text-lg"
-            />
-            <button
-              type="submit"
-              className="bg-accent-yellow text-gray-100 font-bold px-10 py-2 cursor-pointer rounded-full hover:bg-yellow-400 text-lg shadow-lg transition"
-            >
-              Subscribe
-            </button>
-          </form>
-        </motion.section>
-      </section>
+      <NewsletterSection />
     </div>
   );
 }
