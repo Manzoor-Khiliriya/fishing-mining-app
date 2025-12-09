@@ -2,11 +2,12 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { marineCategories } from "@/app/lib/products";
+import { Suspense } from "react";
 
-export default function CategoryBar() {
+function CategoryBarInner() {
   const searchParams = useSearchParams();
   const currentCategory = searchParams.get("category");
-  const q = searchParams.get("q"); // preserve search
+  const q = searchParams.get("q");
 
   return (
     <div className="bg-marine-blue opacity-95 border-b border-marine-blue/10">
@@ -21,8 +22,8 @@ export default function CategoryBar() {
               href={`/products?category=${encodeURIComponent(cat.name)}${query}`}
               className={`px-6 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 ${
                 isActive
-                  ? "bg-accent-yellow marine-blue border border-accent-yellow"
-                  : "bg-white marine-blue border border-marine-blue/20 hover:bg-yellow-400"
+                  ? "bg-accent-yellow text-marine-blue border border-accent-yellow"
+                  : "bg-white text-marine-blue border border-marine-blue/20 hover:bg-yellow-400"
               }`}
             >
               {cat.name}
@@ -31,5 +32,13 @@ export default function CategoryBar() {
         })}
       </div>
     </div>
+  );
+}
+
+export default function CategoryBar() {
+  return (
+    <Suspense fallback={null}>
+      <CategoryBarInner />
+    </Suspense>
   );
 }

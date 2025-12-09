@@ -1,7 +1,5 @@
-// This component should be placed in a file like src/app/about/page.jsx or src/app/components/AboutUsPage.jsx
-
 import Link from 'next/link';
-import { Ship, Lightbulb, Zap, UserCheck, Code, Handshake, Waves, Compass } from 'lucide-react';
+import { Ship, Handshake, Compass } from 'lucide-react';
 
 export default function AboutUsPage() {
   return (

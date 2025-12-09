@@ -1,40 +1,45 @@
 "use client";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function SearchInput() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const router = useRouter();
+function SearchInputInner() {
   const searchParams = useSearchParams();
-  const category = searchParams.get("category");
+  const router = useRouter();
+  const currentSearch = searchParams.get("q") || "";
+  const currentCategory = searchParams.get("category") || "";
+  const [term, setTerm] = useState(currentSearch);
 
-  const handleSearch = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const q = searchTerm.trim();
-
-    if (!q) {
-      router.push(category ? `/products?category=${encodeURIComponent(category)}` : "/products");
-      return;
-    }
-
-    router.push(
-      category
-        ? `/products?category=${encodeURIComponent(category)}&q=${encodeURIComponent(q)}`
-        : `/products?q=${encodeURIComponent(q)}`
-    );
-
-    setSearchTerm("");
+    const params = new URLSearchParams();
+    if (currentCategory) params.set("category", currentCategory);
+    if (term) params.set("q", term);
+    router.push(`/products?${params.toString()}`);
   };
 
   return (
-    <form onSubmit={handleSearch} className="relative w-full max-w-lg mx-auto">
+    <form onSubmit={handleSubmit} className="flex gap-2">
       <input
-        type="text"
-        placeholder="Search navigation, sonar, safety gear..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full pl-4 pr-4 py-3 bg-white text-marine-blue border border-gray-300 rounded-full transition shadow-md"
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+        placeholder="Search marine equipment..."
+        className="px-4 py-2 rounded-lg text-black w-full"
       />
+      <button
+        type="submit"
+        className="bg-accent-yellow text-marine-blue px-4 py-2 rounded-lg font-semibold"
+      >
+        Search
+      </button>
     </form>
+  );
+}
+
+export default function SearchInput() {
+  return (
+    <Suspense fallback={null}>
+      <SearchInputInner />
+    </Suspense>
   );
 }
