@@ -43,7 +43,7 @@ const ProductCollection = ({ title, products }) => (
       <div className="flex justify-between items-center mb-8 border-b border-gray-300 pb-3">
         <h2 className="text-4xl font-extrabold marine-blue">{title}</h2>
         <Link
-          href="/products"
+          href="#"
           className="text-lg font-semibold text-yellow-400 hover:marine-blue transition-colors duration-300"
         >
           View All <ArrowRight className="inline h-5 w-5 ml-1" />
