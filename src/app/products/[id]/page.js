@@ -22,7 +22,7 @@ async function getProduct(id) {
     ...product, 
     price: product.id * 100 + 50,
     features: features, 
-    brand: product.brand || 'NAV-PRO Solutions', 
+    brand: product.brand || 'SEA CAST FISH Solutions', 
     modelNumber: `NVP-${product.id * 10}`, 
   } : undefined;
 }
@@ -49,13 +49,13 @@ export async function generateMetadata({ params }) {
 
   if (!product) {
     return {
-      title: "Product Not Found - NAV-PRO",
+      title: "Product Not Found - SEA CAST FISH",
       description: "Requested marine product could not be located.",
     };
   }
 
   return {
-    title: `${product.name} | Marine Gear Specs - NAV-PRO`,
+    title: `${product.name} | Marine Gear Specs - SEA CAST FISH`,
     description: product.description,
   };
 }

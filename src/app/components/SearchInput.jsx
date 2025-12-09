@@ -24,14 +24,8 @@ function SearchInputInner() {
         value={term}
         onChange={(e) => setTerm(e.target.value)}
         placeholder="Search marine equipment..."
-        className="px-4 py-2 rounded-lg text-black w-full"
+        className="px-4 py-2 rounded-lg bg-white text-black w-full"
       />
-      <button
-        type="submit"
-        className="bg-accent-yellow text-marine-blue px-4 py-2 rounded-lg font-semibold"
-      >
-        Search
-      </button>
     </form>
   );
 }

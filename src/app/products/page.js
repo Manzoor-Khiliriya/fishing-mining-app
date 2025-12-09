@@ -2,7 +2,7 @@ import { marineProducts } from '@/app/lib/products';
 import ProductListFilter from '../components/ProductListFilter'; // Assumed path
 
 export const metadata = {
-  title: 'Full Catalog - NAV-PRO',
+  title: 'Full Catalog - SEA CAST FISH',
 };
 
 export default function ProductsPage() {

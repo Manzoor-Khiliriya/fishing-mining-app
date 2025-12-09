@@ -116,7 +116,7 @@ export default function HomePage() {
       </section>
 
       {/* 4 — TOP BRANDS (bg-white) */}
-      <section className="py-24 bg-white">
+      {/* <section className="py-24 bg-white">
         <motion.section
           className="max-w-7xl mx-auto px-6"
           initial={{ opacity: 0, y: 50 }}
@@ -145,10 +145,10 @@ export default function HomePage() {
             ))}
           </motion.div>
         </motion.section>
-      </section>
+      </section> */}
 
       {/* 5 — VALUE PROPOSITIONS (bg-gray-50) */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <span className="text-sm font-bold text-yellow-400 uppercase tracking-widest">WHY CHOOSE US</span>
           <h2 className="text-4xl font-extrabold marine-blue mt-1 mb-16">
@@ -182,15 +182,15 @@ export default function HomePage() {
       </section>
 
       {/* 6 — NEWSLETTER (bg-white) */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-gray-50">
         <motion.section
-          className="max-w-7xl mx-auto bg-marine-blue text-white rounded-[3rem] py-20 px-10 text-center shadow-2xl"
+          className="max-w-7xl mx-auto bg-marine-blue text-white py-20 text-center shadow-2xl"
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, type: 'spring' }}
         >
-          <h2 className="text-4xl font-bold mb-3">Join NAV-PRO Insider Club</h2>
+          <h2 className="text-4xl font-bold mb-3">Join SEA CAST FISH Insider Club</h2>
           <p className="text-gray-300 mb-10 text-lg">
             Get instant access to product launches, exclusive deals, & field expert guides — zero spam.
           </p>

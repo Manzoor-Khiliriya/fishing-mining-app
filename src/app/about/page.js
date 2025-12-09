@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import { Ship, Handshake, Compass } from 'lucide-react';
 
+export const metadata = {
+  title: 'About Us - SEA CAST FISH',
+};
+
 export default function AboutUsPage() {
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -15,7 +19,7 @@ export default function AboutUsPage() {
             Navigating the Future of Marine Tech
           </h1>
           <p className="text-xl md:text-2xl max-w-4xl mx-auto text-gray-500">
-            **NAV-PRO** is built on a foundation of maritime expertise, delivering essential, military-grade navigation and safety equipment that professionals trust when the stakes are highest.
+            SEA CAST FISH is built on a foundation of maritime expertise, delivering essential, military-grade navigation and safety equipment that professionals trust when the stakes are highest.
           </p>
         </div>
       </section>
@@ -31,7 +35,7 @@ export default function AboutUsPage() {
               From the Helm to the Horizon
             </h2>
             <p className="text-gray-700 mb-6 leading-relaxed text-lg">
-              Founded in 2010 by a team of veteran naval engineers and commercial shipping captains, **NAV-PRO** recognized the gap between consumer electronics and the robust, mission-critical gear required for severe ocean environments. Our initial goal was simple: **source the world's most reliable equipment** and back it with unparalleled technical support.
+              Founded in 2010 by a team of veteran naval engineers and commercial shipping captains, <strong>SEA CAST FISH</strong> recognized the gap between consumer electronics and the robust, mission-critical gear required for severe ocean environments. Our initial goal was simple: **source the world's most reliable equipment** and back it with unparalleled technical support.
             </p>
             <p className="text-gray-700 leading-relaxed text-lg border-l-4 border-accent-green pl-4 italic">
               "We don't just sell equipment; we equip professionals for survival and success."
@@ -52,7 +56,7 @@ export default function AboutUsPage() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <span className="text-sm font-bold accent-yellow uppercase tracking-widest">OUR VALUES</span>
           <h2 className="text-4xl font-extrabold marine-blue mt-2 mb-16">
-            The Pillars of NAV-PRO Reliability
+            The Pillars of SEA CAST FISH Reliability
           </h2>
           
           <div className="grid md:grid-cols-3 gap-10">
@@ -91,7 +95,7 @@ export default function AboutUsPage() {
         <div className="max-w-7xl mx-auto px-6 text-center">
           <span className="text-sm font-bold text-yellow-400 uppercase tracking-widest">THE CREW</span>
           <h2 className="text-4xl font-extrabold marine-blue mt-2 mb-12">
-            Meet the Experts Behind Your Gear
+            Meet the Experts Behind Our Gear
           </h2>
           
           <div className="grid md:grid-cols-3 gap-12">
@@ -99,7 +103,6 @@ export default function AboutUsPage() {
             {/* Team Member 1 */}
             <div className="bg-white p-6 rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300">
               
-              <h3 className="text-2xl font-bold marine-blue mt-4">Alex V.</h3>
               <p className="accent-green font-semibold">Founder & Lead Engineer</p>
               <p className="text-gray-600 mt-3 text-sm">
                 15+ years of naval systems design. Specializes in advanced radar and sonar technology.
@@ -109,7 +112,6 @@ export default function AboutUsPage() {
             {/* Team Member 2 */}
             <div className="bg-white p-6 rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300">
               
-              <h3 className="text-2xl font-bold marine-blue mt-4">Captain Lee T.</h3>
               <p className="accent-green font-semibold">Chief Maritime Advisor</p>
               <p className="text-gray-600 mt-3 text-sm">
                 400,000+ nautical miles logged. Ensures all products meet real-world operational demands.
@@ -119,7 +121,6 @@ export default function AboutUsPage() {
             {/* Team Member 3 */}
             <div className="bg-white p-6 rounded-xl shadow-lg transform hover:scale-[1.02] transition duration-300">
               
-              <h3 className="text-2xl font-bold marine-blue mt-4">Maria S.</h3>
               <p className="accent-green font-semibold">Global Logistics Director</p>
               <p className="text-gray-600 mt-3 text-sm">
                 Manages worldwide distribution and ensures rapid, compliant shipping across all continents.

@@ -63,10 +63,11 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="text-3xl tracking-wide font-extrabold text-white hover:text-yellow-400 transition-colors drop-shadow-lg flex-shrink-0"
+                    className="text-2xl tracking-wide font-extrabold text-white hover:text-yellow-400 transition-colors drop-shadow-lg flex-shrink-0"
                     onClick={handleLinkClick}
                 >
-                    NAV-PRO
+                    SEA CAST <br/>
+                    FISHING EQUIPMENTS
                 </Link>
 
                 {/* Search Input (Desktop) */}
@@ -108,7 +109,7 @@ export default function Navbar() {
                         className="text-3xl font-extrabold text-white"
                         onClick={handleLinkClick}
                     >
-                        NAV-PRO
+                        SEA CAST FISHING EQUIPMENTS
                     </Link>
                     <button
                         className="text-white p-2"

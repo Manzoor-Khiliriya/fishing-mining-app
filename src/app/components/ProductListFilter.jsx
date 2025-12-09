@@ -3,13 +3,17 @@ import { useState, useMemo, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import ProductCard from "./ProductCard";
 import { marineCategories, marineBrands } from "@/app/lib/products";
-import { ChevronDown, ChevronUp, Filter, SlidersHorizontal, X } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Filter,
+  SlidersHorizontal,
+  X,
+} from "lucide-react";
 
 // Define sorting options
 const sortOptions = [
   { name: "Default", value: "default" },
-  { name: "Price", value: "price_asc" },
-  { name: "Price", value: "price_desc" },
   { name: "Newest", value: "newest" },
   { name: "Popularity", value: "best_seller" },
 ];
@@ -51,12 +55,16 @@ function ProductListFilterContent({ products }) {
 
     // Category
     if (selectedCategory) {
-      filteredProducts = filteredProducts.filter((p) => p.category === selectedCategory);
+      filteredProducts = filteredProducts.filter(
+        (p) => p.category === selectedCategory
+      );
     }
 
     // Brand
     if (selectedBrand) {
-      filteredProducts = filteredProducts.filter((p) => p.brand === selectedBrand);
+      filteredProducts = filteredProducts.filter(
+        (p) => p.brand === selectedBrand
+      );
     }
 
     // Search Term
@@ -65,17 +73,14 @@ function ProductListFilterContent({ products }) {
       filteredProducts = filteredProducts.filter(
         (p) =>
           (p.name && p.name.toLowerCase().includes(lowerSearchTerm)) ||
-          (p.description && p.description.toLowerCase().includes(lowerSearchTerm))
+          (p.description &&
+            p.description.toLowerCase().includes(lowerSearchTerm))
       );
     }
 
     // Sorting
     return filteredProducts.sort((a, b) => {
       switch (sortBy) {
-        case "price_asc":
-          return (a.price || 0) - (b.price || 0);
-        case "price_desc":
-          return (b.price || 0) - (a.price || 0);
         case "newest":
           return b.id - a.id;
         case "best_seller":
@@ -84,7 +89,15 @@ function ProductListFilterContent({ products }) {
           return 0;
       }
     });
-  }, [products, searchTerm, selectedCategory, selectedBrand, sortBy, minPrice, maxPrice]);
+  }, [
+    products,
+    searchTerm,
+    selectedCategory,
+    selectedBrand,
+    sortBy,
+    minPrice,
+    maxPrice,
+  ]);
 
   const handleClearFilters = () => {
     setSelectedCategory(null);
@@ -93,7 +106,8 @@ function ProductListFilterContent({ products }) {
     setMaxPrice("");
   };
 
-  const hasActiveLocalFilters = selectedCategory || selectedBrand || minPrice || maxPrice;
+  const hasActiveLocalFilters =
+    selectedCategory || selectedBrand || minPrice || maxPrice;
 
   return (
     <div>
@@ -107,11 +121,7 @@ function ProductListFilterContent({ products }) {
           {isFilterOpen ? "Hide Filters" : "Show Filters"}
         </button>
 
-        <div className="hidden lg:block text-lg font-semibold text-gray-700">
-          <span className="font-bold text-marine-blue">{filteredAndSortedProducts.length}</span> Products Found
-        </div>
-
-        <div className="flex items-center space-x-2 text-sm font-semibold">
+        <div className="flex items-center justify-end space-x-2 text-sm font-semibold">
           <span className="text-gray-600 hidden sm:block">Sort By:</span>
           {sortOptions.map((option) => {
             const isActive = sortBy === option.value;
@@ -119,8 +129,10 @@ function ProductListFilterContent({ products }) {
               <button
                 key={option.value}
                 onClick={() => setSortBy(option.value)}
-                className={`flex items-center px-4 py-2 rounded-full transition-all duration-200 ${
-                  isActive ? "bg-marine-blue text-white shadow-md" : "bg-gray-100 text-marine-blue hover:bg-gray-200"
+                className={`flex items-center px-4 py-2 cursor-pointer rounded-full transition-all duration-200 ${
+                  isActive
+                    ? "bg-marine-blue text-white shadow-md"
+                    : "bg-gray-100 text-marine-blue hover:bg-gray-200"
                 }`}
               >
                 {option.name}
@@ -146,47 +158,19 @@ function ProductListFilterContent({ products }) {
           {searchTerm && (
             <div className="mb-6 p-3 bg-accent-yellow/10 border border-accent-yellow rounded-lg">
               <p className="text-sm font-semibold text-marine-blue flex items-center">
-                <X className="h-4 w-4 mr-1 cursor-pointer text-red-600" onClick={() => (window.location.href = "/products")} />
+                <X
+                  className="h-4 w-4 mr-1 cursor-pointer text-red-600"
+                  onClick={() => (window.location.href = "/products")}
+                />
                 Searching for:
               </p>
-              <p className="text-lg font-bold text-marine-blue break-words">{searchTerm}</p>
+              <p className="text-lg font-bold text-marine-blue break-words">
+                {searchTerm}
+              </p>
             </div>
           )}
 
           <hr className="my-4" />
-
-          {/* Price filter */}
-          <div className="mb-8 border-b border-gray-200 pb-4">
-            <button
-              className="w-full text-left flex justify-between items-center text-lg font-semibold text-gray-700 hover:text-marine-blue transition"
-              onClick={() => setShowPrice(!showPrice)}
-            >
-              Price Range
-              {showPrice ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-            </button>
-
-            {showPrice && (
-              <div className="pt-4 space-y-3">
-                <div className="flex space-x-3 items-center">
-                  <input
-                    type="number"
-                    placeholder="Min $"
-                    value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
-                    className="w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-accent-yellow focus:border-accent-yellow text-sm"
-                  />
-                  <span className="text-gray-500">-</span>
-                  <input
-                    type="number"
-                    placeholder="Max $"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                    className="w-1/2 p-3 border border-gray-300 rounded-lg focus:ring-accent-yellow focus:border-accent-yellow text-sm"
-                  />
-                </div>
-              </div>
-            )}
-          </div>
 
           {/* Category filter */}
           <div className="mb-8 border-b border-gray-200 pb-4">
@@ -195,15 +179,23 @@ function ProductListFilterContent({ products }) {
               onClick={() => setShowCategories(!showCategories)}
             >
               Category
-              {showCategories ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+              {showCategories ? (
+                <ChevronUp className="h-5 w-5" />
+              ) : (
+                <ChevronDown className="h-5 w-5" />
+              )}
             </button>
 
             {showCategories && (
-              <div className="pt-4 space-y-2 max-h-48 overflow-y-auto pr-2">
+              <div className="pt-4 space-y-2 max-h-48 overflow-y-auto pr-2 hide-scrollbar">
+                {" "}
+                {/* ← Added class */}
                 <button
                   onClick={() => setSelectedCategory(null)}
                   className={`w-full text-left p-2 rounded-lg transition ${
-                    !selectedCategory ? "bg-marine-blue text-white font-bold" : "text-gray-600 hover:bg-gray-100"
+                    !selectedCategory
+                      ? "bg-marine-blue text-white font-bold"
+                      : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
                   All Categories
@@ -211,7 +203,7 @@ function ProductListFilterContent({ products }) {
                 {marineCategories.map((cat) => (
                   <button
                     key={cat.id}
-                    onClick={() => setSelectedCategory(cat.name)} // ← fixed highlight logic
+                    onClick={() => setSelectedCategory(cat.name)}
                     className={`w-full text-left p-2 rounded-lg transition ${
                       selectedCategory === cat.name
                         ? "bg-accent-yellow text-marine-blue font-semibold"
@@ -232,15 +224,23 @@ function ProductListFilterContent({ products }) {
               onClick={() => setShowBrands(!showBrands)}
             >
               Brand
-              {showBrands ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+              {showBrands ? (
+                <ChevronUp className="h-5 w-5" />
+              ) : (
+                <ChevronDown className="h-5 w-5" />
+              )}
             </button>
 
             {showBrands && (
-              <div className="pt-4 space-y-2 max-h-48 overflow-y-auto pr-2">
+              <div className="pt-4 space-y-2 max-h-48 overflow-y-auto pr-2 hide-scrollbar">
+                {" "}
+                {/* ← Added class */}
                 <button
                   onClick={() => setSelectedBrand(null)}
                   className={`w-full text-left p-2 rounded-lg transition ${
-                    !selectedBrand ? "bg-marine-blue text-white font-bold" : "text-gray-600 hover:bg-gray-100"
+                    !selectedBrand
+                      ? "bg-marine-blue text-white font-bold"
+                      : "text-gray-600 hover:bg-gray-100"
                   }`}
                 >
                   All Brands
@@ -276,8 +276,15 @@ function ProductListFilterContent({ products }) {
         {/* PRODUCT GRID */}
         <div className="flex-1">
           <div className="lg:hidden mb-4 text-lg font-semibold text-gray-700">
-            <span className="font-bold text-marine-blue">{filteredAndSortedProducts.length}</span> Products Found
-            {searchTerm && <span className="text-gray-500 italic ml-2">(filtered by "{searchTerm}")</span>}
+            <span className="font-bold marine-blue">
+              {filteredAndSortedProducts.length}
+            </span>{" "}
+            Products Found
+            {searchTerm && (
+              <span className="text-gray-500 italic ml-2">
+                (filtered by "{searchTerm}")
+              </span>
+            )}
           </div>
 
           {filteredAndSortedProducts.length > 0 ? (
@@ -288,10 +295,15 @@ function ProductListFilterContent({ products }) {
             </div>
           ) : (
             <div className="text-center p-20 bg-white rounded-xl shadow-lg">
-              <h3 className="text-2xl font-bold text-marine-blue mb-4">No Products Match Your Criteria</h3>
+              <h3 className="text-2xl font-bold marine-blue mb-4">
+                No Products Match Your Criteria
+              </h3>
               <p className="text-gray-600">
                 Try adjusting your filters, or{" "}
-                <a href="/products" className="text-accent-yellow hover:text-marine-blue font-semibold">
+                <a
+                  href="/products"
+                  className="accent-yellow hover:text-marine-blue font-semibold"
+                >
                   clear the search term
                 </a>
                 .
@@ -306,7 +318,13 @@ function ProductListFilterContent({ products }) {
 
 export default function ProductListFilter(props) {
   return (
-    <Suspense fallback={<div className="text-center py-20 text-lg font-semibold text-gray-600">Loading filters...</div>}>
+    <Suspense
+      fallback={
+        <div className="text-center py-20 text-lg font-semibold text-gray-600">
+          Loading filters...
+        </div>
+      }
+    >
       <ProductListFilterContent {...props} />
     </Suspense>
   );

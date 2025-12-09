@@ -2,7 +2,6 @@ import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
 import { Geist, Geist_Mono } from "next/font/google";
-import CategoryBar from "@/app/components/CategoryBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +15,7 @@ const geistMono = Geist_Mono({
 
 
 export const metadata = {
-  title: "Fishing & Marine Store",
+  title: "SEA CAST FISH - Premium Fishing & Marine Equipment",
   description: "Fishing and marine equipment showcase website",
 };
 
@@ -25,7 +24,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg-ocean-light flex flex-col min-h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Navbar />
-        <CategoryBar />
         <main className="flex-grow">{children}</main>
         <Footer />
       </body>
