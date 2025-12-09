@@ -12,13 +12,11 @@ export default function ContactPageClient() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate sending (replace with real API / EmailJS / Formspree later)
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsLoading(false);
     setIsSubmitted(true);
 
-    // Auto-hide success message after 6 seconds + reset form
     setTimeout(() => {
       setIsSubmitted(false);
       e.target.reset();
@@ -32,30 +30,15 @@ export default function ContactPageClient() {
           Let's Set Sail Together
         </h1>
         <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-          Our specialized team of certified marine experts is ready to assist with technical support,
-          quote requests, and expedition planning.
+          Our specialized team of certified marine experts is ready to assist
+          with technical support, quote requests, and expedition planning.
         </p>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* FORM */}
         <div className="relative">
-          {/* Success Overlay */}
-          {isSubmitted && (
-            <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl animate-in fade-in duration-500">
-              <div className="text-center p-10">
-                <CheckCircle2 className="h-20 w-20 text-green-600 mx-auto mb-6 animate-bounce" />
-                <h3 className="text-3xl font-bold marine-blue mb-3">
-                  Message Sent Successfully!
-                </h3>
-                <p className="text-lg text-gray-700">
-                  Thank you! We'll reply within 24 hours.
-                </p>
-              </div>
-            </div>
-          )}
-
-          <div className={`bg-white p-10 rounded-3xl shadow-2xl border border-gray-100/70 transition-opacity ${isSubmitted ? "opacity-30" : ""}`}>
+          <div className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-100/70">
             <h2 className="text-3xl font-bold marine-blue mb-8 border-b pb-4">
               Send Us an Inquiry
             </h2>
@@ -63,7 +46,10 @@ export default function ContactPageClient() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Full Name
                   </label>
                   <input
@@ -78,7 +64,10 @@ export default function ContactPageClient() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
                     Email Address
                   </label>
                   <input
@@ -94,7 +83,10 @@ export default function ContactPageClient() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Inquiry Type
                 </label>
                 <select
@@ -110,13 +102,18 @@ export default function ContactPageClient() {
                   </option>
                   <option value="quote">Product Quote Request</option>
                   <option value="support">Technical Support / Warranty</option>
-                  <option value="partnerships">Dealer / Partnership Inquiry</option>
+                  <option value="partnerships">
+                    Dealer / Partnership Inquiry
+                  </option>
                   <option value="general">General Inquiry</option>
                 </select>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -130,6 +127,16 @@ export default function ContactPageClient() {
                 />
               </div>
 
+              {/* Success Message (Small Box) */}
+              {isSubmitted && (
+                <div className="mb-6 p-5 rounded-xl bg-green-100 border border-green-300 text-green-800 flex items-center gap-3 animate-in fade-in duration-300">
+                  <CheckCircle2 className="h-6 w-6 text-green-600" />
+                  <p className="text-lg font-semibold">
+                    Message sent successfully! We will reply within 24 hours.
+                  </p>
+                </div>
+              )}
+              
               <button
                 type="submit"
                 disabled={isLoading || isSubmitted}
@@ -179,9 +186,12 @@ export default function ContactPageClient() {
               <div className="flex items-start">
                 <MapPin className="text-yellow-400 h-7 w-7 mr-4 mt-1 flex-shrink-0" />
                 <div>
-                  <p className="text-lg font-semibold marine-blue">Headquarters</p>
+                  <p className="text-lg font-semibold marine-blue">
+                    Headquarters
+                  </p>
                   <address className="text-gray-700 not-italic leading-relaxed">
-                    Near Safeer Mall, Musaffah<br />
+                    Near Safeer Mall, Musaffah
+                    <br />
                     ME9, Abu Dhabi, UAE
                   </address>
                 </div>

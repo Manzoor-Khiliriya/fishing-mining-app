@@ -1,29 +1,23 @@
 "use client";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { Suspense } from "react";
+import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
 
 function SearchInputInner() {
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const currentSearch = searchParams.get("q") || "";
-  const currentCategory = searchParams.get("category") || "";
-  const [term, setTerm] = useState(currentSearch);
+  const [term, setTerm] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const params = new URLSearchParams();
-    if (currentCategory) params.set("category", currentCategory);
-    if (term) params.set("q", term);
-    router.push(`/products?${params.toString()}`);
+    if (!term.trim()) return;
+    router.push(`/products?q=${encodeURIComponent(term)}`);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex gap-2 w-full">
       <input
         value={term}
         onChange={(e) => setTerm(e.target.value)}
-        placeholder="Search marine equipment..."
+        placeholder="Search product name..."
         className="px-4 py-2 rounded-lg bg-white text-black w-full"
       />
     </form>
